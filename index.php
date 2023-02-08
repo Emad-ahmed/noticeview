@@ -56,3 +56,11 @@
 
 
 
+<div class="container mt-5 mb-5">
+	<h1 class="text-dark mb-5">Campus Location</h1>
+
+	<div>
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28958.70270122546!2d91.77196291562502!3d24.869387499999988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3751015addbec3b7%3A0x9e87b7be58b5f67e!2z4Kay4Ka_4Kah4Ka_4KaCIOCmh-CmieCmqOCmv-CmreCmvuCmsOCnjeCmuOCmv-Cmn-Cmvw!5e0!3m2!1sbn!2sbd!4v1675790916594!5m2!1sbn!2sbd" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	</div>
+
+</div>

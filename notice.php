@@ -37,7 +37,7 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
 
     <div class="container mt-5">
         <?php
-            if($data['role'] == 'student')
+            if($data['role'] == 'teacher')
             {
                 echo "<a href='addnotice.php' class='btn btn-info text-white'>Add Notice</a>";
             }

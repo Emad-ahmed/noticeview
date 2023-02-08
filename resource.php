@@ -59,7 +59,7 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
           </a>
           <ul class='dropdown-menu'>
             <li><a class='dropdown-item' href='addResource.php'>Add Lecture Notes</a></li>
-            <li><a class='dropdown-item' href='noticeUpdate.php'>Add Notice</a></li>
+            <li><a class='dropdown-item' href='addnotice.php'>Add Notice</a></li>
           </ul>
         </div>";
         }
@@ -75,55 +75,26 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
                     <a href="#" class="btn btn-primary">Submit</a>
                   </div>   -->
       <div class="row">
-        <div class="col-lg-4 col-md-3 col-sm-6">
-          <div class="card card-block ">
-            <img src="images/cloudcomp-2.png" alt="">
-            <h5 class="card-title m-1">Protecting your content against cyber threats and data loss.</h5>
-            <p class="card-text m-1">Protecting your sensitive files is a top priority.</p>
-            <a class="text-left text-hyperlink m-2" href="#"><strong>Explore resources</strong></a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-3 col-sm-6">
-          <div class="card card-block ">
-            <img src="images/cloudcomp-2.png" alt="">
-            <h5 class="card-title m-1"><strong>Protecting your content against cyber threats and data loss.</strong></h5>
-            <p class="card-text m-1">Protecting your sensitive files is a top priority.</p>
-            <a class="text-left text-hyperlink m-2" href="#"><strong>Explore resources</strong></a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-3 col-sm-6">
-          <div class="card card-block ">
-            <img src="images/cloudcomp-2.png" alt="">
-            <h5 class="card-title m-1"><strong>Protecting your content against cyber threats and data loss.</strong></h5>
-            <p class="card-text m-1">Protecting your sensitive files is a top priority.</p>
-            <a class="text-left text-hyperlink m-2" href="#"><strong>Explore resources</strong></a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-3 col-sm-6">
-          <div class="card card-block ">
-            <img src="images/cloudcomp-2.png" alt="">
-            <h5 class="card-title m-1"><strong>Protecting your content against cyber threats and data loss.</strong></h5>
-            <p class="card-text m-1">Protecting your sensitive files is a top priority.</p>
-            <a class="text-left text-hyperlink m-2" href="#"><strong>Explore resources</strong></a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-3 col-sm-6">
-          <div class="card card-block ">
-            <img src="images/cloudcomp-2.png" alt="">
-            <h5 class="card-title m-1"><strong>Protecting your content against cyber threats and data loss.</strong></h5>
-            <p class="card-text m-1">Protecting your sensitive files is a top priority.</p>
-            <a class="text-left text-hyperlink m-2" href="#"><strong>Explore resources</strong></a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-3 col-sm-6">
-          <div class="card card-block ">
-            <img src="images/cloudcomp-2.png" alt="">
-            <h5 class="card-title m-1"><strong>Protecting your content against cyber threats and data loss.</strong></h5>
-            <p class="card-text m-1">Protecting your sensitive files is a top priority.</p>
-            <a class="text-left text-hyperlink m-2" href="#"><strong>Explore resources</strong></a>
-          </div>
-        </div>
 
+      <?php
+        
+        $alldata = mysqli_query($conn, "SELECT * FROM `resource` ORDER BY id DESC");
+
+        while ($row = mysqli_fetch_array($alldata)) {
+        echo "<div class='col-lg-4 col-md-3 col-sm-6'>
+        <a href='resourceshow.php?id=$row[id]'>
+          <div class='card card-block '>
+            <img src='images/cloudcomp-2.png' alt=''>
+            <h3 class='card-title m-1'>$row[topic]</h3>
+            <h6 class='card-text m-1'>Course Code: $row[course_title]</h6>
+            <a class='text-left text-hyperlink m-2' href='#'><strong>Explore resources</strong></a>
+          </div>
+          </a>
+        </div>";
+        }
+       
+
+        ?>
 
 
 

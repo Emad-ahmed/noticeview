@@ -1,4 +1,5 @@
 <?php include 'navBarIn.php'; ?>
+
 <?php
 
 
@@ -6,60 +7,52 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
   echo "<script>alert('Please signin to enter this page');</script>";
   echo "<script>window.location.href='signin.php ? user_not_loggedin';</script>";
 }
-if ($_SESSION['role'] != 'teacher') {
-  echo "<script>window.location.href='signin.php';</script>";
-}
+
 ?>
 
-  <h1 class="text-center">Add Resources</h1>
-  <div class="container">
-    <form action="addResourceAction.php" class="form-design mx-auto" method="POST" enctype="multipart/form-data">
 
-       <div class="row mb-3">
-        <label for="" class="col-sm-3 col-form-label">Course Title</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="exampleInputName" placeholder="Course Title">
+
+<link rel="stylesheet" href="style/notice.css">
+  <main>
+    
+
+    <div class="container mt-5">
+        <h1 class="add_notice">Add Resource</h1>
+        <div class="jum">
+        <form action="resourceAction.php" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label for="course_title" class="form-label">Course Title</label>
+                    <input type="text" class="form-control" name="course_title" id="course_title">
+                </div>
+
+                <div class="mb-3">
+                    <label for="topic" class="form-label">Topic</label>
+                    <input type="text" class="form-control" name="topic" id="topic">
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="description" id="description" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" name="image" class="form-control" id="name">
+                </div>
+                <div class="mb-3">
+                    <label for="pdf" class="form-label">PDF</label>
+                    <input type="file" name="pdf" class="form-control" id="pdf">
+                </div>
+                <button type="submit" class="btn submitbtn col-12">Submit</button>
+        </form>
         </div>
-      </div>
+    
 
-       <div class="row mb-3">
-        <label for="exampleInputEmail" class="col-sm-3 col-form-label">Topic</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="exampleInputEmail" placeholder="Topic" required>
-        </div>
-      </div> 
 
-       <div class="mb-3 d-flex">
-        <label for="exampleInputPassword" class="col-sm-3 col-form-label">File Type</label>
-        <select class="form-control ms-1" id="exampleSelectLanguage" required>
-          <option value="" class="text-dark">Select file type</option>
-          <option value="en" class="text-dark">pdf</option>
-          <option value="de" class="text-dark">docx</option>
-          <option value="es" class="text-dark">pptx</option>
-          <option value="ru" class="text-dark">Video</option>
-        </select>
-      </div> 
+    </div>
 
-      <div class="row mb-3">
-        <label for="exampleCustomFile" class="col-sm-3 col-form-label">Add File</label>
-        <div class="col-sm-9">
-          <input type="file" class="form-control" name="file[]" multiple>
-        </div>
-      </div>
+ 
 
-      <div class="row mb-3">
-        <label for="exampleTextareaBio" class="col-sm-3 col-form-label">Description</label>
-        <div class="col-sm-9">
-          <textarea class="form-control" id="exampleTextareaBio" placeholder="Description" required></textarea>
-        </div>
-      </div> 
+</main>
 
-      <div class="row mb-0">
-        <div class="col-sm-9 offset-sm-3">
-          <button type="submit" class="btn btn-primary" name="submit">Upload</button>
-          <button type="reset" class="btn btn-secondary"><a href="resource.php" class="nav-link p-0 text-white">Cancel</a></button>
-        </div>
-      </div>
-    </form>
-  </div>
   
