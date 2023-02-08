@@ -7,7 +7,7 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
   echo "<script>alert('Please signin to enter this page');</script>";
   echo "<script>window.location.href='signin.php ? user_not_loggedin';</script>";
 }
-
+$course_title = $_GET['course_title'];
 ?>
 
 <style>
@@ -81,7 +81,7 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
 
       <?php
         
-        $alldata = mysqli_query($conn, "SELECT * FROM `resource` ORDER BY id DESC");
+        $alldata = mysqli_query($conn, "SELECT * FROM `resource` WHERE course_title = '$course_title'");
 
         while ($row = mysqli_fetch_array($alldata)) {
         echo "<div class='col-lg-4 col-md-3 col-sm-6 allshow'>
@@ -103,7 +103,7 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
 
       </div>
 
-      </div>
+
 
 
 

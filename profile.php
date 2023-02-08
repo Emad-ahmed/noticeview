@@ -13,6 +13,7 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
 // $row = mysqli_fetch_array($result);
 
 ?>
+<link rel="stylesheet" href="style/resource.css">
 
 <style>
     .proimage
@@ -21,6 +22,24 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
         height:15rem;
         object-fit:cover;
     }
+   
+  .col-lg-4
+  {
+    margin-bottom: 2rem;
+  }
+  .card-block
+  {
+    height:100%;
+ 
+  }
+  .resource
+  {
+    text-decoration:none;
+  }
+  .card h3, h6{
+    color:black;
+  }
+
 </style>
 
 <link rel="stylesheet" href="">
@@ -36,6 +55,7 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
                 $user_data = "SELECT * FROM `users` WHERE email_id = '{$_SESSION['emailId']}'";
                 $result = mysqli_query($conn, $user_data);
                 $row = mysqli_fetch_array($result);
+                $myid = $row['id'];
                 // print_r($row);
 
 
@@ -112,6 +132,58 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
                 ?>
             </main>
 
+        
+
+            <div class="container mt-5">
+      <!--   <div class="card card-block mb-2">
+                    <h4 class="card-title">Card 1</h4>
+                    <p class="card-text">Welcom to bootstrap card styles</p>
+                    <a href="#" class="btn btn-primary">Submit</a>
+        
+                  </div>   -->
+      <?php
+      if($data['role'] == 'teacher')
+      {
+        echo "
+        <hr>
+        <h3 class='text-dark mb-4 mt-5'>My Resources</h3>
+   
+        ";
+      }
+       
+      ?>
+     
+      <div class="row">
+
+      <?php
+        
+        $alldata = mysqli_query($conn, "SELECT * FROM `resource` WHERE user_id = '$myid'");
+
+        while ($row = mysqli_fetch_array($alldata)) {
+        echo "
+        <div class='col-lg-4 col-md-3 col-sm-6 allshow'>
+        <a href='resourceshow.php?id=$row[id]' class='resource'>
+          <div class='card card-block'>
+            <img src='images/cloudcomp-2.png' alt=''>
+            <h3 class='card-title m-1'>$row[topic]</h3>
+            <h6 class='card-text m-1'>Course Code: $row[course_title]</h6>
+            <a class='text-left text-hyperlink m-2' href='#' class='resource'><strong>Explore resources</strong></a>
+          </div>
+          </a>
+        </div>";
+        }
+       
+
+        ?>
+
+
+
+      </div>
+
+      </div>
+
+
+
             <footer>
                 <hr style="height:2px; width:100%; border-width:0; color:white; background-color:white">
                 <div class="row mt-5">
@@ -132,4 +204,4 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
         </div>
     </div>
 
-    
+

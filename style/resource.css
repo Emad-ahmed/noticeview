@@ -135,3 +135,23 @@ a:hover{
 .navbar a{
   color: white !important;
 }
+
+.imgview
+{
+
+  height: 22rem;
+  margin: auto;
+  object-fit: cover;
+}
+
+.resource:hover
+{
+  color: #004643;
+}
+
+#videoexample video
+{
+  border: 3px solid black;
+  padding: 10px;
+  
+}

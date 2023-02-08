@@ -18,7 +18,7 @@ $data = mysqli_fetch_array($run);
 if($data['image'] != "")
 {
     $dataimage = $data['image'];
-}
+};
 
 
 ?>
@@ -27,7 +27,7 @@ if($data['image'] != "")
 
 
 <link rel="stylesheet" href="style/resource.css">
-  
+
 <div class="container">
     <?php
     echo "<div class='jumbotron'>
@@ -35,8 +35,9 @@ if($data['image'] != "")
         <hr>
         <div>
             <img src='$dataimage' alt=''>
+       
         </div>
-        <hr>
+     
         <div>
             <p>$data[description]</p>
         </div>

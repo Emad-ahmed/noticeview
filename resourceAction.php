@@ -1,6 +1,17 @@
 <?php
 include 'config.php';
 
+session_start();
+
+$email = $_SESSION['emailId'];
+
+$dataFetchQuery = "SELECT * FROM `users` WHERE email_id = '$email'";
+$run = mysqli_query($conn, $dataFetchQuery);
+$data = mysqli_fetch_array($run);
+
+$user_id = $data['id'];
+$full_name = $data['full_name'];
+
 
 $title = $_POST['course_title'];
 $topic= $_POST['topic'];
@@ -9,47 +20,40 @@ $image = $_FILES['image'];
 $pdf = $_FILES['pdf'];
 $pdf_name = $pdf['name'];
 $pdf_tmp_name = $pdf['tmp_name'];
-$pdf_size = $pdf['size'];
-$pdf_error = $pdf['error'];
+
 
 $imageLocation = $image['tmp_name'];
 $imageName = $image['name'];
+
+$video = $_FILES['video'];
+$video_name = $video['name'];
+$video_tmp_name = $video['tmp_name'];
+
+
+
 
 $imageDes = 'resourseImage/' . $imageName;
 
 move_uploaded_file($imageLocation, $imageDes);
 
+$PdfDes = 'pdf/' . $pdf_name;
 
-$pdf_ext = explode('.', $pdf_name);
-$pdf_ext = strtolower(end($pdf_ext));
+move_uploaded_file($pdf_tmp_name, $PdfDes);
 
-$allowed = array('pdf');
 
-if (in_array($pdf_ext, $allowed)) {
-    if ($pdf_error === 0) {
-        if ($pdf_size <= 2097152) {
-            $pdf_new_name = uniqid('', true) . '.' . $pdf_ext;
-            $pdf_destination = 'pdf/' . $pdf_new_name;
-            move_uploaded_file($pdf_tmp_name, $pdf_destination);
+$VideoDes = 'video/' . $video_name;
 
-            $pdf = $pdf_destination;
-            $pdf = mysqli_real_escape_string($conn, $pdf);
+move_uploaded_file($video_tmp_name, $VideoDes);
 
-            $sql = "INSERT INTO `resource`(`course_title`, `topic`, `description`, `image`, `pdf`) VALUES ('$title','$topic','$description','$imageDes', '$pdf')";
 
-            if (mysqli_query($conn, $sql)) {
-                echo "<script>alert('Successfully Inserted')</script>";
-                echo "<script>location.href = 'resource.php'</script>";
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
+$sql = "INSERT INTO `resource`(`user_id`, `teacher_name`,`course_title`, `topic`, `description`, `image`, `pdf`, `video`) VALUES ('$user_id','$full_name','$title','$topic','$description','$imageDes', '$PdfDes', '$VideoDes')";
 
-            } else {
-                echo "<script>alert('File size is too big. Max size is 2 MB.')</script>";
-                echo "<script>location.href = 'addResource.php'</script>";
-            }
-        } else {
-            echo "<script>alert('Error uploading file. Please try again.')</script>";
-            echo "<script>location.href = 'addResource.php'</script>";
-        }
-    } 
+if (!mysqli_query($conn, $sql)) {
+
+    die("Not Inserted!");
+}else{
+    echo "<script>alert('Resource Inserted!!')</script>";
+    echo "<script>location.href='resource.php'</script>";
+}
+
+

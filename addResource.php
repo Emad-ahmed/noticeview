@@ -43,6 +43,10 @@ if (!isset($_SESSION['isUserLoggedIn'])) {
                     <label for="pdf" class="form-label">PDF</label>
                     <input type="file" name="pdf" class="form-control" id="pdf">
                 </div>
+                <div class="mb-3">
+                    <label for="video" class="form-label">VIDEO</label>
+                    <input type="file" name="video" class="form-control" id="video">
+                </div>
                 <button type="submit" class="btn submitbtn col-12">Submit</button>
         </form>
         </div>
